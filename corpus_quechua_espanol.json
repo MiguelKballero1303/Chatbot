@@ -1,0 +1,690 @@
+[
+  {
+    "quechua": "Huk ratukama!",
+    "espanol": "¡Nos vemos!"
+  },
+  {
+    "quechua": "Ama hamuychu.",
+    "espanol": "No venga usted."
+  },
+  {
+    "quechua": "Pacha mama.",
+    "espanol": "Madre Tierra."
+  },
+  {
+    "quechua": "Kusikunaykipaq asichkani.",
+    "espanol": "Me río para que te alegres."
+  },
+  {
+    "quechua": "Mishikakunaqa Nawa simita rimarqanku.",
+    "espanol": "Los aztecas hablaban náhuatl."
+  },
+  {
+    "quechua": "Makllu munaq chayka, chaypim usupanqa.",
+    "espanol": "Quien ama el peligro, perecerá en él."
+  },
+  {
+    "quechua": "Michikuna ancha ch'uya uywam.",
+    "espanol": "Los gatos son animales muy limpios."
+  },
+  {
+    "quechua": "Kastilla simip hanllallinta pasaqlla pantani.",
+    "espanol": "A menudo confundo las vocales del castellano."
+  },
+  {
+    "quechua": "Ama suway, ama llullay, ama qillay.",
+    "espanol": "No robes, no mientas, no seas ocioso."
+  },
+  {
+    "quechua": "Kamripi, Chubutpi, Kamri simiqa tukri simim.",
+    "espanol": "El galés es un idioma oficial en Gales y Chubut."
+  },
+  {
+    "quechua": "Michiqa yanam.",
+    "espanol": "El gato es negro."
+  },
+  {
+    "quechua": "Ñuqa t'antatam munani.",
+    "espanol": "Quiero pan."
+  },
+  {
+    "quechua": "Pañaman muyuriy.",
+    "espanol": "Gire a la derecha."
+  },
+  {
+    "quechua": "Lluq'iman muyuriy.",
+    "espanol": "Gira a la izquierda."
+  },
+  {
+    "quechua": "Manan tusuyta yachanichu.",
+    "espanol": "No sé bailar."
+  },
+  {
+    "quechua": "Llakisqan kashani.",
+    "espanol": "Estoy triste."
+  },
+  {
+    "quechua": "Aylluypaq llank'ani.",
+    "espanol": "Trabajo para mi familia."
+  },
+  {
+    "quechua": "Wardiyawan rimashanku.",
+    "espanol": "Están hablando con el policía."
+  },
+  {
+    "quechua": "Riqsinakuymanta anchatam kusikuni.",
+    "espanol": "Me alegra que nos conociéramos."
+  },
+  {
+    "quechua": "Mikhuq kusikun puñuq kusikun.",
+    "espanol": "Come feliz, duerme feliz."
+  },
+  {
+    "quechua": "Huk liwruta rantirqani.",
+    "espanol": "Compré un libro."
+  },
+  {
+    "quechua": "Paksipakaman.",
+    "espanol": "Te veo el lunes."
+  },
+  {
+    "quechua": "Tupankakaman.",
+    "espanol": "Hasta la próxima."
+  },
+  {
+    "quechua": "Kayakaman.",
+    "espanol": "Hasta mañana."
+  },
+  {
+    "quechua": "Ashtakashkaman.",
+    "espanol": "Nos vemos después."
+  },
+  {
+    "quechua": "Shoq punllakaman.",
+    "espanol": "Nos vemos otro día."
+  },
+  {
+    "quechua": "Jesuska Mariapak churimi.",
+    "espanol": "Jesús es hijo de María."
+  },
+  {
+    "quechua": "Zeuska Cronospak churimi.",
+    "espanol": "Zeus es hijo de Cronos."
+  },
+  {
+    "quechua": "Heraka Zeuspak warmimi.",
+    "espanol": "Hera es esposa de Zeus."
+  },
+  {
+    "quechua": "Zeuska Herapak kusami.",
+    "espanol": "Zeus es esposo de Hera."
+  },
+  {
+    "quechua": "Ateneaka Zeuspak ushimi.",
+    "espanol": "Atenea es hija de Zeus."
+  },
+  {
+    "quechua": "Afroditaka Ateneapak ñañami.",
+    "espanol": "Afrodita es hermana de Atenea."
+  },
+  {
+    "quechua": "Apoloka Ateneapak turimi.",
+    "espanol": "Apolo es hermano de Atenea."
+  },
+  {
+    "quechua": "Dionisioka Apolopak wawkimi.",
+    "espanol": "Dionisio es hermano de Apolo."
+  },
+  {
+    "quechua": "Hadeska Apolopak yayawkimi.",
+    "espanol": "Hades es tío de Apolo."
+  },
+  {
+    "quechua": "Dionisioka Poseidonpak saniimi.",
+    "espanol": "Dionisio es sobrino de Poseidón."
+  },
+  {
+    "quechua": "Cronoska Apolopak hatun taytami.",
+    "espanol": "Cronos es abuelo de Apolo."
+  },
+  {
+    "quechua": "Zeuska Afroditapak taytami.",
+    "espanol": "Zeus es papá de Afrodita."
+  },
+  {
+    "quechua": "Heraka Arespak mamami.",
+    "espanol": "Hera es mamá de Ares."
+  },
+  {
+    "quechua": "Heraka Dionisiopak ipami.",
+    "espanol": "Hera es tía de Dionisio."
+  },
+  {
+    "quechua": "Ateneaka Herapak mullami.",
+    "espanol": "Atenea es sobrina de Hera."
+  },
+  {
+    "quechua": "Ateneaka Hefestospak panaymi.",
+    "espanol": "Atenea es prima de Hefestos."
+  },
+  {
+    "quechua": "Atallpaka kimsa chakikunata charinchu?",
+    "espanol": "¿La gallina tiene tres patas?"
+  },
+  {
+    "quechua": "Mashna lulunkuna yanunaukupi tiyanchik?",
+    "espanol": "¿Cuántos huevos tenemos en la cocina?"
+  },
+  {
+    "quechua": "Kay muchikoka Josepakmi kan.",
+    "espanol": "Este sombrero es de José."
+  },
+  {
+    "quechua": "Pipaktak kay muchikoka kan?",
+    "espanol": "¿De quién es este sombrero?"
+  },
+  {
+    "quechua": "Hefestoka Hermespak turaymi.",
+    "espanol": "Hefesto es primo de Hermes."
+  },
+  {
+    "quechua": "Kanka?",
+    "espanol": "¿Y tú?"
+  },
+  {
+    "quechua": "Shina shinalla.",
+    "espanol": "Más o menos."
+  },
+  {
+    "quechua": "-Kushikuni. -Kushikunipish.",
+    "espanol": "-Mucho gusto. -Igualmente."
+  },
+  {
+    "quechua": "Payka ñuka mashi Mari.",
+    "espanol": "Ella es mi amiga Mari."
+  },
+  {
+    "quechua": "Obama Estados Unidosmantami kan.",
+    "espanol": "Obama es de Estados Unidos."
+  },
+  {
+    "quechua": "Evo Morales Boliviamantami kan.",
+    "espanol": "Evo Morales es de Bolivia."
+  },
+  {
+    "quechua": "Shakira Colombiamantami kan.",
+    "espanol": "Shakira es de Colombia."
+  },
+  {
+    "quechua": "Pelé Brasilmantami kan.",
+    "espanol": "Pelé es de Brasil."
+  },
+  {
+    "quechua": "José Andrés sumak yanujmi kan.",
+    "espanol": "José Andrés es un gran cocinero."
+  },
+  {
+    "quechua": "House hambinayukmi kan.",
+    "espanol": "House es médico."
+  },
+  {
+    "quechua": "Bill Nye yachachijmi kan.",
+    "espanol": "Bill Nye es profesor."
+  },
+  {
+    "quechua": "Leo Messika rumpata pugllajmi kan.",
+    "espanol": "Leo Messi es jugador de fútbol."
+  },
+  {
+    "quechua": "Adele takijmi kan.",
+    "espanol": "Adele es cantante."
+  },
+  {
+    "quechua": "Ñuka makikuna chunga rukakunata charin.",
+    "espanol": "Mis manos tienen diez dedos."
+  },
+  {
+    "quechua": "Intika posoq rumpukunata charin.",
+    "espanol": "El Sol tiene nueve planetas."
+  },
+  {
+    "quechua": "Ishki allkukuna posoq chakikuna charin.",
+    "espanol": "Dos perros tienen ocho patas."
+  },
+  {
+    "quechua": "Kanpak churika kanchis watayukmi kan.",
+    "espanol": "Tu hijo tiene siete años."
+  },
+  {
+    "quechua": "Ñuka wasipi soqta runakunaka kawsanchik.",
+    "espanol": "En mi casa vivimos seis personas."
+  },
+  {
+    "quechua": "Makika pichka rukakuna charin.",
+    "espanol": "La mano tiene cinco dedos."
+  },
+  {
+    "quechua": "Apiukuna chusko chakikunata charin.",
+    "espanol": "El caballo tiene cuatro patas."
+  },
+  {
+    "quechua": "Payka kimsa ñañakunata charin.",
+    "espanol": "Ella tiene tres hermanas."
+  },
+  {
+    "quechua": "Kanka ishki chunga watayuk kanki.",
+    "espanol": "Tú tienes veinte años."
+  },
+  {
+    "quechua": "Ishki lulunkuna gentikunakami charin.",
+    "espanol": "Las personas tienen dos ojos."
+  },
+  {
+    "quechua": "Shuk Intika kan.",
+    "espanol": "El Sol es uno."
+  },
+  {
+    "quechua": "Shuk Intika kan.",
+    "espanol": "Hay un Sol."
+  },
+  {
+    "quechua": "Ecuadormantami kani.",
+    "espanol": "Soy de Ecuador."
+  },
+  {
+    "quechua": "Maymantak kanki?",
+    "espanol": "¿De dónde eres?"
+  },
+  {
+    "quechua": "Alli tuta.",
+    "espanol": "Buenas noches."
+  },
+  {
+    "quechua": "Alli chisi.",
+    "espanol": "Buenas tardes."
+  },
+  {
+    "quechua": "Alli punlla.",
+    "espanol": "Buenos días."
+  },
+  {
+    "quechua": "Yanapaway!",
+    "espanol": "¡Ayúdame, por favor!"
+  },
+  {
+    "quechua": "Yupaichani!",
+    "espanol": "¡Gracias!"
+  },
+  {
+    "quechua": "Ñuka kullkita shuwarkan.",
+    "espanol": "Me robaron el dinero."
+  },
+  {
+    "quechua": "Ñukaka Jack shutimi.",
+    "espanol": "Me llamo Jack."
+  },
+  {
+    "quechua": "Ñukaka uvyanayanami kani.",
+    "espanol": "Tengo sed."
+  },
+  {
+    "quechua": "Ñukaka uvyanayanami kani.",
+    "espanol": "Estoy sediento."
+  },
+  {
+    "quechua": "Ñukaka mana kanpak shimita rimanichu.",
+    "espanol": "No hablo tu lengua."
+  },
+  {
+    "quechua": "Ñukaka Inglaterra mantami kani.",
+    "espanol": "Soy de Inglaterra."
+  },
+  {
+    "quechua": "Pacha Mamawan runakunaka kawsanchik.",
+    "espanol": "Los indígenas vivimos con la madre Tierra."
+  },
+  {
+    "quechua": "Wiwakunawan, yurakunawan, yakuwan ñukanchika yuyanchikpish, purinchikpish, kawsanchikpish.",
+    "espanol": "Con los animales, con las plantas, con el agua nosotros pensamos, caminamos y vivimos."
+  },
+  {
+    "quechua": "-Kanka yanujchu kan? -Mana, ñukaka mana lulunkunata yanunichu.",
+    "espanol": "-¿Usted es cocinero? -No, yo no cocino ni huevos."
+  },
+  {
+    "quechua": "Ñuka yachachij sumakmi kan.",
+    "espanol": "Mi profesora es muy buena."
+  },
+  {
+    "quechua": "Kichwata rimapay, mashikuna.",
+    "espanol": "Hablemos quichua, por favor, amigos."
+  },
+  {
+    "quechua": "Alli tuta, tayta.",
+    "espanol": "Buenas noches, papá."
+  },
+  {
+    "quechua": "Alli punlla, mashi Sandra.",
+    "espanol": "Buenos días, amiga Sandra."
+  },
+  {
+    "quechua": "Chay wambraka, Perumantachu kan?",
+    "espanol": "Ese joven, ¿es de Perú?"
+  },
+  {
+    "quechua": "Chay qarika, Ima shuti kan?",
+    "espanol": "Ese hombre, ¿cómo se llama?"
+  },
+  {
+    "quechua": "Mashi Guaman, Mayman rigunki?",
+    "espanol": "Amigo Guaman, ¿adónde vas?"
+  },
+  {
+    "quechua": "Imanalla, mashikuna.",
+    "espanol": "Hola, amigos, ¿cómo están?"
+  },
+  {
+    "quechua": "Ñukaka mana Ecuadorpi wacharirkanichu, icha kichwaka achka munanimi.",
+    "espanol": "Yo no nací en Ecuador, pero me gusta mucho el quichua."
+  },
+  {
+    "quechua": "Ñukapak wawki Españapimi kawsan.",
+    "espanol": "Mi hermano vive en España."
+  },
+  {
+    "quechua": "Kay muchikuka mashna kan?",
+    "espanol": "Este gorro, ¿cuánto vale?"
+  },
+  {
+    "quechua": "Chay anaquka ishki patzak dolarmi kan.",
+    "espanol": "Esa falda cuesta doscientos dólares."
+  },
+  {
+    "quechua": "Mana uyarkankichu?",
+    "espanol": "¿No me oye?"
+  },
+  {
+    "quechua": "Mana yachanichu.",
+    "espanol": "No sé."
+  },
+  {
+    "quechua": "Mana yuyarinichu.",
+    "espanol": "No me acuerdo."
+  },
+  {
+    "quechua": "Mana munanichu.",
+    "espanol": "No me gusta."
+  },
+  {
+    "quechua": "Mana charinichu.",
+    "espanol": "No tengo."
+  },
+  {
+    "quechua": "Mashna kan?",
+    "espanol": "¿Cuánto es?"
+  },
+  {
+    "quechua": "Mashna kan?",
+    "espanol": "¿Cuánto vale?"
+  },
+  {
+    "quechua": "Imapak kichwata yachakukunki?",
+    "espanol": "¿Por qué estás estudiando quichua?"
+  },
+  {
+    "quechua": "Kichwaka shina runa kunapak sapitami kan.",
+    "espanol": "El quichua es como la raíz de los indígenas."
+  },
+  {
+    "quechua": "Sara mutitapish, atallpa aychatapish, papatapish ñukanchik randishun.",
+    "espanol": "Compramos mote de maíz, carne de gallina y papas."
+  },
+  {
+    "quechua": "Kichwaka ñuka shungupi kawsan.",
+    "espanol": "El quichua vive en nuestro corazón."
+  },
+  {
+    "quechua": "Ñawpa ñukaka wawallami karkani.",
+    "espanol": "Antes yo era un niñito."
+  },
+  {
+    "quechua": "Payka kanpak warmichu?",
+    "espanol": "¿Ella es tu esposa?"
+  },
+  {
+    "quechua": "Ñukaka Otavalopimi kawsani.",
+    "espanol": "Yo vivo en Otavalo."
+  },
+  {
+    "quechua": "Kanka Ecuadormanta kankichu?",
+    "espanol": "¿Tú eres de Ecuador?"
+  },
+  {
+    "quechua": "Ima shuti kanki?",
+    "espanol": "¿Cuál es tu nombre?"
+  },
+  {
+    "quechua": "Ima shuti kanki?",
+    "espanol": "¿Cómo te llamas?"
+  },
+  {
+    "quechua": "Maymanta kanki?",
+    "espanol": "¿De dónde eres?"
+  },
+  {
+    "quechua": "Kuchika tukuy mikunata mikun.",
+    "espanol": "El cerdo come todos los alimentos."
+  },
+  {
+    "quechua": "Kamuwasipi achka kamukunakami kan.",
+    "espanol": "En la biblioteca hay muchos libros."
+  },
+  {
+    "quechua": "Runakunaka Ecuadorpi kichwata riman, icha runa kunaka Perupi quechuata riman.",
+    "espanol": "Los indígenas en Ecuador hablan quichua, pero en Perú hablan quechua."
+  },
+  {
+    "quechua": "Wambrakunaka kichwata munan.",
+    "espanol": "A los jóvenes les gusta el quichua."
+  },
+  {
+    "quechua": "Runakunaka Ecuadorpi kichwata rimanchik",
+    "espanol": "Los indígenas en Ecuador hablamos quichua."
+  },
+  {
+    "quechua": "Ñukaka yakuta kuyani.",
+    "espanol": "Yo amo el agua."
+  },
+  {
+    "quechua": "Nihun shimita rimankichu?",
+    "espanol": "¿Hablas japonés?"
+  },
+  {
+    "quechua": "Payka Quitomantami kan.",
+    "espanol": "Él es de Quito."
+  },
+  {
+    "quechua": "Payka Quitomantami kan.",
+    "espanol": "Ella es de Quito."
+  },
+  {
+    "quechua": "Ñukaka Chilemantami kani. Maymanta kanki?",
+    "espanol": "Yo soy de Chile. ¿De dónde eres?"
+  },
+  {
+    "quechua": "Ñukaka yachakujmi kani. Kanka?",
+    "espanol": "Yo soy estudiante. ¿Y tú?"
+  },
+  {
+    "quechua": "Kanka hambinayuk kankichu?",
+    "espanol": "¿Tú eres médico?"
+  },
+  {
+    "quechua": "Ñukaka Aliciami kani. Payka ñuka mashi Pedromi kan.",
+    "espanol": "Yo soy Alicia. Él es mi amigo Pedro."
+  },
+  {
+    "quechua": "Kanka munajpi, Ñuka killinsa hatallina ushankimi.",
+    "espanol": "Puedes usar mi lápiz, si quieres."
+  },
+  {
+    "quechua": "Helenami Alejandrotaka kuyan.",
+    "espanol": "Helena ama a Alejandro."
+  },
+  {
+    "quechua": "Uliseska Penelopetami kuyan.",
+    "espanol": "Ulises ama a Penélope."
+  },
+  {
+    "quechua": "Pukami Garutaka kuyan.",
+    "espanol": "Puka ama a Garu."
+  },
+  {
+    "quechua": "Kay kullkika kanpakchu?",
+    "espanol": "¿Este dinero es tuyo?"
+  },
+  {
+    "quechua": "Ñuka istallata ch'ingachirkani.",
+    "espanol": "Perdí mi billetera."
+  },
+  {
+    "quechua": "Uyay.",
+    "espanol": "Oye."
+  },
+  {
+    "quechua": "Uyapay",
+    "espanol": "Oye, por favor."
+  },
+  {
+    "quechua": "Uyapaway.",
+    "espanol": "Óyeme, por favor."
+  },
+  {
+    "quechua": "Shamuy",
+    "espanol": "Ven."
+  },
+  {
+    "quechua": "Shamupay.",
+    "espanol": "Ven, por favor."
+  },
+  {
+    "quechua": "Kutin nipay.",
+    "espanol": "Por favor, dilo de nuevo."
+  },
+  {
+    "quechua": "Kutin rimapay.",
+    "espanol": "Por favor, habla de nuevo."
+  },
+  {
+    "quechua": "Tiyaripay.",
+    "espanol": "Por favor, siéntate."
+  },
+  {
+    "quechua": "Kanka shoq mushuq kushmata mutzunki.",
+    "espanol": "Tú necesitas una camisa nueva."
+  },
+  {
+    "quechua": "Qanmi kanki ñuqapa kawsay.",
+    "espanol": "Tú eres mi vida."
+  },
+  {
+    "quechua": "Maymantataq kanki?",
+    "espanol": "¿De dónde eres?"
+  },
+  {
+    "quechua": "Maymantataq hamunki?",
+    "espanol": "¿De dónde vienes?"
+  },
+  {
+    "quechua": "Samarikuy.",
+    "espanol": "Descansa."
+  },
+  {
+    "quechua": "Haykaqtaq ripunki?",
+    "espanol": "¿Cuándo te vas?"
+  },
+  {
+    "quechua": "Haykatataq manuyki?",
+    "espanol": "¿Cuánto le debo?"
+  },
+  {
+    "quechua": "Hayka watayuqtaq kanki?",
+    "espanol": "¿Cuántos años tienes?"
+  },
+  {
+    "quechua": "Purisap.",
+    "espanol": "Caminaré."
+  },
+  {
+    "quechua": "Achachaw!",
+    "espanol": "¡Qué calor!"
+  },
+  {
+    "quechua": "Alalaw!",
+    "espanol": "¡Qué frío!"
+  },
+  {
+    "quechua": "Ananaw.",
+    "espanol": "Qué dolor."
+  },
+  {
+    "quechua": "Añañaw!",
+    "espanol": "¡Qué hermoso!"
+  },
+  {
+    "quechua": "¿Hayk'an wawqiykikuna?",
+    "espanol": "¿Cuántos hermanos tienes?"
+  },
+  {
+    "quechua": "¿Hayk'a watayuqmi paykuna kanku?",
+    "espanol": "¿Cuántos años tienen?"
+  },
+  {
+    "quechua": "¿Aylluykiwanchu tiyanki?",
+    "espanol": "¿Vives con tu familia?"
+  },
+  {
+    "quechua": "Wayt'ayta yachani.",
+    "espanol": "Sé nadar."
+  },
+  {
+    "quechua": "¿Ikipupi pukllankichu?",
+    "espanol": "¿Juegas en un equipo?"
+  },
+  {
+    "quechua": "Ayllumantam napaykarimuyki.",
+    "espanol": "Saludos desde la comunidad."
+  },
+  {
+    "quechua": "Magyar simita rimani.",
+    "espanol": "Hablo húngaro."
+  },
+  {
+    "quechua": "Manam sapallaykichu kachakanki!",
+    "espanol": "¡No estás sola!"
+  },
+  {
+    "quechua": "Ñuka ñakcharirkani.",
+    "espanol": "Me peiné el pelo."
+  },
+  {
+    "quechua": "Tomaska ñakcharirka.",
+    "espanol": "Tom se peinó el pelo."
+  },
+  {
+    "quechua": "Ñuqaqa wasiypim qipani.",
+    "espanol": "Yo me quedo en casa."
+  },
+  {
+    "quechua": "Warmikuka mishiwan puñun.",
+    "espanol": "La mujercita duerme con el gato."
+  },
+  {
+    "quechua": "Yupaychani.",
+    "espanol": "Gracias."
+  },
+  {
+    "quechua": "Huk allin timunkamyuqta huk parasiqullapi yachankiman.",
+    "espanol": "Un buen piloto se puede reconocer en una sola vuelta."
+  }
+]
