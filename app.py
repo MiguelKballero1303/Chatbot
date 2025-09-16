@@ -7,7 +7,6 @@ import json, os, random, requests
 import openai
 from datetime import datetime
 
-# Cargar variables de entorno
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -16,17 +15,28 @@ if not OPENAI_API_KEY:
 
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
-# Variables del robot y backend
 ROBOT_EMAIL = os.getenv("ROBOT_EMAIL")
 ROBOT_PASSWORD = os.getenv("ROBOT_PASSWORD")
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:3000")
 
-# Corpus para quechua
 with open("corpus_quechua_espanol.json", encoding="utf-8") as f:
     corpus = json.load(f)
 if os.path.exists("corpus_runasimi_ampliado.json"):
     with open("corpus_runasimi_ampliado.json", encoding="utf-8") as f:
         corpus.extend(json.load(f))
+
+preguntas_recoleccion = [
+    "¿Qué te motivó a buscar apoyo psicológico en este momento?",
+    "¿Desde cuándo vienes experimentando esta situación o malestar?",
+    "¿Cómo describirías tu estado de ánimo en las últimas semanas?",
+    "¿Has tenido dificultades para dormir, comer o concentrarte últimamente?",
+    "¿Existen eventos recientes en tu vida que consideres importantes para tu bienestar emocional?",
+    "¿Tienes antecedentes de haber recibido terapia psicológica o psiquiátrica antes?",
+    "¿Hay situaciones o actividades que te ayuden a sentirte mejor cuando estás mal?",
+    "¿Con quién cuentas como red de apoyo (familia, amigos, pareja, etc.)?",
+    "¿Hay algún problema de salud física que quieras mencionar?",
+    "¿Qué esperas lograr o cambiar a través de este proceso terapéutico?"
+]
 
 # FastAPI
 app = FastAPI()
@@ -36,16 +46,13 @@ class Mensaje(BaseModel):
     user_id: str
     mensaje: str
 
-# Estados de conversación
 conversaciones = {}
 estado_usuario = {}
 datos_testimonio = {}
 datos_parciales = {}
 
-# Token JWT del robot
 JWT_ROBOT = None
 
-# Login inicial del robot
 def autenticar_robot():
     global JWT_ROBOT
     login_data = {"email": ROBOT_EMAIL, "password": ROBOT_PASSWORD}
@@ -65,7 +72,6 @@ def contiene_quechua(texto):
     palabras = ["llaki", "kawsay", "ñawi", "munay", "wasi", "rimay", "sunqu", "llapa"]
     return any(p in texto.lower() for p in palabras)
 
-# Usa OpenAI para extraer datos personales en JSON
 def extraer_datos(texto):
     prompt = f"""
 Extrae los siguientes campos del texto: nombre, apellido, dni, celular y correo. 
@@ -92,7 +98,6 @@ Texto: "{texto}"
         print("❌ Error procesando JSON:", e)
         return {}
 
-# Análisis de testimonio para historia clínica y especialidad
 def analizar_testimonio(texto):
     prompt = f"""
 Analiza el siguiente testimonio de un paciente y responde con un JSON que incluya:
@@ -175,7 +180,7 @@ async def chat(m: Mensaje):
         conversaciones[user_id] = []
         estado_usuario[user_id] = "inicio"
         datos_testimonio[user_id] = ""
-        datos_parciales[user_id] = {}
+        datos_parciales[user_id] = {"respuestas": {}, "pregunta_actual": 0}
 
     estado = estado_usuario[user_id]
     mensajes = conversaciones[user_id]
@@ -188,7 +193,7 @@ async def chat(m: Mensaje):
 
         mensajes.insert(0, {
             "role": "system",
-            "content": "Eres un terapeuta compasivo y multilingüe que conversa de forma empática con personas que buscan ayuda. Tu prioridad es escuchar con atención, validar sus emociones y ofrecer consuelo inicial. No menciones la posibilidad de una sesión gratuita en el primer mensaje. Solo cuando tengas al menos dos mensajes del paciente y comprendas bien la situación, evalúa si necesita ayuda económica. Si crees que es así, puedes preguntarle si desea registrarse para recibir una sesión gratuita."
+            "content": "Eres un terapeuta compasivo y multilingüe que conversa de forma empática con personas que buscan ayuda. Tu prioridad es escuchar con atención, validar sus emociones y ofrecer consuelo inicial. No menciones la posibilidad de una sesión gratuita en el primer mensaje. Solo cuando tengas al menos dos mensajes del paciente y comprendas bien la situación, evalúa si necesita ayuda económica."
         })
 
         mensajes.append({"role": "user", "content": texto})
@@ -201,29 +206,47 @@ async def chat(m: Mensaje):
         ).choices[0].message.content.strip()
 
         conversaciones[user_id] = mensajes + [{"role": "assistant", "content": respuesta}]
-        estado_usuario[user_id] = "conversando"
-        return {"respuesta": respuesta}
+        estado_usuario[user_id] = "anamnesis"
+        return {"respuesta": respuesta + "\n\n" + preguntas_recoleccion[0]}
 
-    elif estado == "conversando":
-        mensajes.append({"role": "user", "content": texto})
-        datos_testimonio[user_id] += " " + texto
+    elif estado == "anamnesis":
+        progreso = datos_parciales[user_id]
+        idx = progreso["pregunta_actual"]
+    
+        if idx < len(preguntas_recoleccion):
+            progreso["respuestas"][preguntas_recoleccion[idx]] = texto
+            progreso["pregunta_actual"] += 1
 
-        respuesta = client.chat.completions.create(
+        resumen_respuestas = " ".join([f"{k}: {v}" for k, v in progreso["respuestas"].items()])
+        prompt_revision = f"""
+        Eres un asistente clínico. Revisa estas respuestas del paciente:
+        {resumen_respuestas}
+
+        Solo responde "SI" si ya tienes información suficiente para una primera anamnesis psicológica,
+        incluyendo al menos estas áreas:
+        - Motivo de consulta
+        - Tiempo o inicio del problema
+        - Estado de ánimo actual
+        - Red de apoyo (familia, amigos, pareja, etc.)
+        - Expectativas del proceso terapéutico
+
+        Si falta alguna de estas áreas, responde "NO".
+        Responde únicamente con SI o NO, sin explicaciones adicionales.
+        """
+
+        decision = client.chat.completions.create(
             model="gpt-4",
-            messages=mensajes,
-            temperature=0.7
-        ).choices[0].message.content.strip()
+            messages=[{"role": "user", "content": prompt_revision}],
+            temperature=0
+        ).choices[0].message.content.strip().upper()
 
-        conversaciones[user_id] = mensajes + [{"role": "assistant", "content": respuesta}]
-
-        if len([mm for mm in mensajes if mm["role"] == "user"]) >= 2:
-            analisis = analizar_testimonio(datos_testimonio[user_id])
-            amerita = analisis.get("ameritaGratuito")
-            if amerita:
-                estado_usuario[user_id] = "espera_respuesta"
-                return {"respuesta": respuesta + "\n\n¿Te gustaría registrarte para recibir una sesión gratuita?"}
-
-        return {"respuesta": respuesta}
+        if decision == "SI" or progreso["pregunta_actual"] >= len(preguntas_recoleccion):
+            datos_testimonio[user_id] += " " + resumen_respuestas
+            estado_usuario[user_id] = "espera_respuesta"
+            return {"respuesta": "Gracias por responder. Con esta información podremos orientarte mejor. ¿Te gustaría registrarte para recibir una sesión gratuita?"}
+        else:
+            siguiente_pregunta = preguntas_recoleccion[progreso["pregunta_actual"]]
+            return {"respuesta": siguiente_pregunta}
 
     elif estado == "espera_respuesta":
         if any(p in texto.lower() for p in ["sí", "si", "claro", "ari", "de acuerdo", "por favor"]):
@@ -248,7 +271,6 @@ async def chat(m: Mensaje):
             return {"respuesta": f"Aún necesito los siguientes datos para registrarte: {falta_str}."}
 
         try:
-            # Registrar paciente
             response = requests.post(
                 f"{BACKEND_URL}/pacientes",
                 json=datos,
@@ -271,15 +293,13 @@ async def chat(m: Mensaje):
             if "id" not in paciente:
                 return {"respuesta": "El servidor no devolvió un ID de paciente. Por favor intenta más tarde."}
 
-            # Analizar testimonio y elegir profesional
             analisis = analizar_testimonio(datos_testimonio[user_id])
             especialidad = analisis.get("especialidadRecomendada", "")
             profesional_id = obtener_profesional_por_especialidad(especialidad) or obtener_profesional_por_especialidad("")
 
             if not profesional_id:
                 return {"respuesta": "No encontramos un profesional disponible. Te contactaremos pronto."}
-
-            # Crear cita (puedes reemplazar fechaHora por una lógica dinámica)
+            
             cita = {
                 "paciente": paciente["id"],
                 "profesionalSalud": profesional_id,
@@ -294,11 +314,9 @@ async def chat(m: Mensaje):
                 timeout=20
             )
 
-            # Tratamiento sugerido
             tratamientos = obtener_tratamientos(JWT_ROBOT)
             tratamiento_id = seleccionar_tratamiento_mas_adecuado(datos_testimonio[user_id], tratamientos)
 
-            # Crear historia clínica
             historia = {
                 "paciente": paciente["id"],
                 "profesionalSalud": profesional_id,
