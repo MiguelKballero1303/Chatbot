@@ -11,7 +11,7 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
-    raise RuntimeError("Falta OPENAI_API_KEY en .env")
+    raise RuntimeError("❌ Falta OPENAI_API_KEY en .env")
 
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
@@ -38,7 +38,6 @@ preguntas_recoleccion = [
     "¿Qué esperas lograr o cambiar a través de este proceso terapéutico?"
 ]
 
-# FastAPI
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
@@ -50,7 +49,6 @@ conversaciones = {}
 estado_usuario = {}
 datos_testimonio = {}
 datos_parciales = {}
-
 JWT_ROBOT = None
 
 def autenticar_robot():
@@ -193,7 +191,7 @@ async def chat(m: Mensaje):
 
         mensajes.insert(0, {
             "role": "system",
-            "content": "Eres un terapeuta compasivo y multilingüe que conversa de forma empática con personas que buscan ayuda. Tu prioridad es escuchar con atención, validar sus emociones y ofrecer consuelo inicial. No menciones la posibilidad de una sesión gratuita en el primer mensaje. Solo cuando tengas al menos dos mensajes del paciente y comprendas bien la situación, evalúa si necesita ayuda económica."
+            "content": "Eres un terapeuta compasivo y multilingüe que conversa de forma empática con personas que buscan ayuda. Tu prioridad es escuchar con atención, validar sus emociones y ofrecer consuelo inicial."
         })
 
         mensajes.append({"role": "user", "content": texto})
@@ -227,11 +225,10 @@ async def chat(m: Mensaje):
         - Motivo de consulta
         - Tiempo o inicio del problema
         - Estado de ánimo actual
-        - Red de apoyo (familia, amigos, pareja, etc.)
+        - Red de apoyo
         - Expectativas del proceso terapéutico
 
         Si falta alguna de estas áreas, responde "NO".
-        Responde únicamente con SI o NO, sin explicaciones adicionales.
         """
 
         decision = client.chat.completions.create(
@@ -339,7 +336,6 @@ async def chat(m: Mensaje):
         except Exception as e:
             print("❌ Error en el registro:", e)
             return {"respuesta": "Ocurrió un error inesperado al registrar tus datos. Por favor, intenta nuevamente."}
-
     elif estado == "finalizado":
         return {"respuesta": "Tu cita ya está registrada. ¿Hay algo más en lo que pueda ayudarte?"}
 
