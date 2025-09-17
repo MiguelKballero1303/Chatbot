@@ -215,7 +215,7 @@ async def chat(m: Mensaje):
             pregunta_actual = preguntas_recoleccion[idx]
             respuesta_usuario = texto.strip()
 
-
+            # Validar claridad de la respuesta
             prompt_validacion = f"""
             Eres un asistente clínico.
             Pregunta del psicólogo: "{pregunta_actual}"
@@ -225,7 +225,6 @@ async def chat(m: Mensaje):
             - "CLARO" si la respuesta aporta información válida y relacionada.
             - "CONFUSO" si expresa duda, evasión, incomprensión o no responde a la pregunta.
             """
-
             decision = client.chat.completions.create(
                 model="gpt-4",
                 messages=[{"role": "user", "content": prompt_validacion}],
@@ -233,9 +232,28 @@ async def chat(m: Mensaje):
             ).choices[0].message.content.strip().upper()
 
             if "CONFUSO" in decision:
-                return {
-                    "respuesta": f"Entiendo, quizás no quedó claro 😊. Lo intento de otra forma:\n\n{pregunta_actual}"
-                }
+                # Inicializar contador de intentos si no existe
+                progreso.setdefault("intentos", {})
+                progreso["intentos"].setdefault(idx, 0)
+                progreso["intentos"][idx] += 1
+
+                # Si ya intentamos 2 veces, saltamos
+                if progreso["intentos"][idx] >= 2:
+                    progreso["pregunta_actual"] += 1
+                    return {"respuesta": "No te preocupes, podemos dejar esa pregunta de lado por ahora 😊. Sigamos con otra."}
+                else:
+                    # Reformulación de la pregunta
+                    reformulaciones = {
+                        "¿Existen eventos recientes en tu vida que consideres importantes para tu bienestar emocional?":
+                            [
+                                "¿Ha ocurrido algo importante en tu vida últimamente que creas que influye en cómo te sientes?",
+                                "¿Hay situaciones recientes que estén afectando tu bienestar emocional, ya sea de manera positiva o negativa?"
+                            ]
+                    }
+                    alternativas = reformulaciones.get(pregunta_actual, [])
+                    reformulada = alternativas[progreso["intentos"][idx]-1] if progreso["intentos"][idx]-1 < len(alternativas) else pregunta_actual
+
+                    return {"respuesta": f"Entiendo, lo planteo de otra manera 😊:\n\n{reformulada}"}
 
             # --- Si la respuesta es clara, guardamos y avanzamos ---
             progreso["respuestas"][pregunta_actual] = respuesta_usuario
