@@ -210,11 +210,38 @@ async def chat(m: Mensaje):
     elif estado == "anamnesis":
         progreso = datos_parciales[user_id]
         idx = progreso["pregunta_actual"]
-    
+
         if idx < len(preguntas_recoleccion):
-            progreso["respuestas"][preguntas_recoleccion[idx]] = texto
+            pregunta_actual = preguntas_recoleccion[idx]
+            respuesta_usuario = texto.strip()
+
+
+            prompt_validacion = f"""
+            Eres un asistente clínico.
+            Pregunta del psicólogo: "{pregunta_actual}"
+            Respuesta del paciente: "{respuesta_usuario}"
+
+            Clasifica la respuesta SOLO con una palabra:
+            - "CLARO" si la respuesta aporta información válida y relacionada.
+            - "CONFUSO" si expresa duda, evasión, incomprensión o no responde a la pregunta.
+            """
+
+            decision = client.chat.completions.create(
+                model="gpt-4",
+                messages=[{"role": "user", "content": prompt_validacion}],
+                temperature=0
+            ).choices[0].message.content.strip().upper()
+
+            if "CONFUSO" in decision:
+                return {
+                    "respuesta": f"Entiendo, quizás no quedó claro 😊. Lo intento de otra forma:\n\n{pregunta_actual}"
+                }
+
+            # --- Si la respuesta es clara, guardamos y avanzamos ---
+            progreso["respuestas"][pregunta_actual] = respuesta_usuario
             progreso["pregunta_actual"] += 1
 
+        # --- Evaluar si ya hay suficiente info ---
         resumen_respuestas = " ".join([f"{k}: {v}" for k, v in progreso["respuestas"].items()])
         prompt_revision = f"""
         Eres un asistente clínico. Revisa estas respuestas del paciente:
@@ -244,6 +271,8 @@ async def chat(m: Mensaje):
         else:
             siguiente_pregunta = preguntas_recoleccion[progreso["pregunta_actual"]]
             return {"respuesta": siguiente_pregunta}
+
+
 
     elif estado == "espera_respuesta":
         if any(p in texto.lower() for p in ["sí", "si", "claro", "ari", "de acuerdo", "por favor"]):
