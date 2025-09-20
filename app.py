@@ -18,12 +18,6 @@ ROBOT_EMAIL = os.getenv("ROBOT_EMAIL")
 ROBOT_PASSWORD = os.getenv("ROBOT_PASSWORD")
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:3000")
 
-with open("corpus_quechua_espanol.json", encoding="utf-8") as f:
-    corpus = json.load(f)
-if os.path.exists("corpus_runasimi_ampliado.json"):
-    with open("corpus_runasimi_ampliado.json", encoding="utf-8") as f:
-        corpus.extend(json.load(f))
-
 preguntas_recoleccion = [
     "¿Qué te motivó a buscar apoyo psicológico en este momento?",
     "¿Desde cuándo vienes experimentando esta situación o malestar?",
@@ -72,10 +66,6 @@ def autenticar_robot():
     except Exception as e:
         print("❌ Error autenticando robot:", e)
         JWT_ROBOT = None
-
-def contiene_quechua(texto):
-    palabras = ["llaki", "kawsay", "ñawi", "munay", "wasi", "rimay", "sunqu", "llapa"]
-    return any(p in texto.lower() for p in palabras)
 
 def extraer_datos(texto):
     prompt = f"""
@@ -179,7 +169,6 @@ De todos los tratamientos listados, ¿cuál parece más adecuado para ayudar al 
 async def chat(m: Mensaje):
     user_id = m.user_id.strip()
     texto = m.mensaje.strip()
-    habla_quechua = contiene_quechua(texto)
 
     try:
         parsed = json.loads(texto)
@@ -206,11 +195,6 @@ async def chat(m: Mensaje):
     mensajes = conversaciones[user_id]
 
     if estado == "inicio":
-        ejemplos = random.sample(corpus, min(6, len(corpus))) if habla_quechua else []
-        for par in ejemplos:
-            mensajes.append({"role": "user", "content": par["espanol"]})
-            mensajes.append({"role": "assistant", "content": par["quechua"]})
-
         mensajes.insert(0, {
             "role": "system",
             "content": "Eres un terapeuta compasivo y multilingüe que conversa de forma empática con personas que buscan ayuda. Tu prioridad es escuchar con atención, validar sus emociones y ofrecer consuelo inicial."
@@ -317,8 +301,6 @@ async def chat(m: Mensaje):
         else:
             siguiente_pregunta = preguntas_recoleccion[progreso["pregunta_actual"]]
             return {"respuesta": siguiente_pregunta}
-
-
 
     elif estado == "espera_respuesta":
         if any(p in texto.lower() for p in ["sí", "si", "claro", "ari", "de acuerdo", "por favor"]):
