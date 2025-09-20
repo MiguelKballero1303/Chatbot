@@ -190,6 +190,8 @@ async def chat(m: Mensaje):
                 "Nivel de malestar (inicial)": parsed.get("nivel", ""),
                 "Modalidad preferida (inicial)": parsed.get("modalidad", ""),
             })
+            datos_testimonio.setdefault(user_id, "")
+            datos_testimonio[user_id] += f"Motivo: {parsed.get('motivo','')}, Nivel: {parsed.get('nivel','')}, Modalidad: {parsed.get('modalidad','')}. "
             return {"respuesta": "Gracias por compartir tu información inicial 💙. Ahora cuéntame un poco más…"}
     except Exception:
         pass
