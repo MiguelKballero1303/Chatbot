@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 import uvicorn
 import json, os, random, requests
 import openai
-from datetime import datetime
-
+from datetime import datetime, timezone, timedelta
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -50,6 +49,14 @@ estado_usuario = {}
 datos_testimonio = {}
 datos_parciales = {}
 JWT_ROBOT = None
+
+def generar_fecha_cita():
+    ahora = datetime.now(timezone.utc)
+    lima_offset = timedelta(hours=-5)
+    ahora_lima = ahora.astimezone(timezone(lima_offset))
+    cita_lima = (ahora_lima + timedelta(days=1)).replace(hour=10, minute=0, second=0, microsecond=0)
+    cita_utc = cita_lima.astimezone(timezone.utc)
+    return cita_utc.isoformat().replace("+00:00", "Z")
 
 def autenticar_robot():
     global JWT_ROBOT
@@ -173,6 +180,19 @@ async def chat(m: Mensaje):
     user_id = m.user_id.strip()
     texto = m.mensaje.strip()
     habla_quechua = contiene_quechua(texto)
+
+    try:
+        parsed = json.loads(texto)
+        if isinstance(parsed, dict) and parsed.get("tipo") == "datos_iniciales":
+            datos_parciales.setdefault(user_id, {"respuestas": {}, "pregunta_actual": 0})
+            datos_parciales[user_id]["respuestas"].update({
+                "Motivo de consulta (inicial)": parsed.get("motivo", ""),
+                "Nivel de malestar (inicial)": parsed.get("nivel", ""),
+                "Modalidad preferida (inicial)": parsed.get("modalidad", ""),
+            })
+            return {"respuesta": "Gracias por compartir tu información inicial 💙. Ahora cuéntame un poco más…"}
+    except Exception:
+        pass
 
     if user_id not in conversaciones:
         conversaciones[user_id] = []
@@ -354,9 +374,10 @@ async def chat(m: Mensaje):
                 "paciente": paciente["id"],
                 "profesionalSalud": profesional_id,
                 "motivo": "Primera sesión gratuita ofrecida por el chatbot",
-                "fechaHora": "2025-07-01T10:00:00Z",
+                "fechaHora": generar_fecha_cita(),
                 "estado": "PENDIENTE"
             }
+            
             requests.post(
                 f"{BACKEND_URL}/citas",
                 json=cita,
