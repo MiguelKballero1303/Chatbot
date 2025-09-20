@@ -242,16 +242,22 @@ async def chat(m: Mensaje):
                     progreso["pregunta_actual"] += 1
                     return {"respuesta": "No te preocupes, podemos dejar esa pregunta de lado por ahora 😊. Sigamos con otra."}
                 else:
-                    # Reformulación de la pregunta
-                    reformulaciones = {
-                        "¿Existen eventos recientes en tu vida que consideres importantes para tu bienestar emocional?":
-                            [
-                                "¿Ha ocurrido algo importante en tu vida últimamente que creas que influye en cómo te sientes?",
-                                "¿Hay situaciones recientes que estén afectando tu bienestar emocional, ya sea de manera positiva o negativa?"
-                            ]
-                    }
-                    alternativas = reformulaciones.get(pregunta_actual, [])
-                    reformulada = alternativas[progreso["intentos"][idx]-1] if progreso["intentos"][idx]-1 < len(alternativas) else pregunta_actual
+                    # Reformulación dinámica con IA
+                    prompt_reformular = f"""
+                    Eres un asistente clínico empático. 
+                    La pregunta original es: "{pregunta_actual}"
+                    El paciente respondió: "{respuesta_usuario}", pero fue clasificada como confusa.
+
+                    Reformula la pregunta de manera más clara, sencilla y cercana,
+                    manteniendo su intención clínica, pero usando un lenguaje más cotidiano.
+                    Devuelve SOLO la pregunta reformulada, sin explicaciones adicionales.
+                    """
+
+                    reformulada = client.chat.completions.create(
+                        model="gpt-4",
+                        messages=[{"role": "user", "content": prompt_reformular}],
+                        temperature=0.7
+                    ).choices[0].message.content.strip()
 
                     return {"respuesta": f"Entiendo, lo planteo de otra manera 😊:\n\n{reformulada}"}
 
